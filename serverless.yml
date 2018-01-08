@@ -1,0 +1,34 @@
+service: sdn-dataset-api
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  stage: dev
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - es:*
+      Resource: "*"
+  environment:
+    ES_URL: "search-datarea-o2cglxd5agwytjwhzgtedbg4fq.us-east-1.es.amazonaws.com"
+    ES_INDEX: "metadata"
+    VERSION: 1.0.0
+
+functions:
+  app:
+    handler: dist/index.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+  getDataset:
+      handler: dist/index.handler
+      events:
+        - http: 'GET /api/datasets/{proxy+}'
+  searchDatasets:
+    handler: dist/index.handler
+    events:
+      - http: 'GET /api/datasets/search'
