@@ -5,7 +5,7 @@ export async function searchDatasets(req, res) {
 
   try {
     const result = await es.searchDatasets({ q });
-    res.json({ result });
+    res.json({ q, result });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

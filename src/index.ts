@@ -8,8 +8,8 @@ import { searchDatasets } from "./handler/search-datasets";
 const app = express();
 
 app.get("/api", (req, res) => res.json({ version: config.get("version") }));
+app.get("/api/datasets/search", searchDatasets);
 app.get("/api/datasets/:id", getDataset);
-app.get("/api/datasets/search", (req, res) => searchDatasets);
 
 app.use((req, res) => res.send(404));
 

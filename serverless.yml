@@ -20,11 +20,11 @@ functions:
     events:
       - http: ANY /
       - http: 'ANY {proxy+}'
-  getDataset:
-      handler: dist/index.handler
-      events:
-        - http: 'GET /api/datasets/{proxy+}'
   searchDatasets:
     handler: dist/index.handler
     events:
       - http: 'GET /api/datasets/search'
+  getDataset:
+      handler: dist/index.handler
+      events:
+        - http: 'GET /api/datasets/{proxy+}'

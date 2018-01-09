@@ -9,9 +9,9 @@ export async function getDataset(req, res) {
     if (result) {
       res.json({ result });
     } else {
-      res.status(404).send({ message: "Dataset is not found." });
+      res.status(404).json({ message: "Not Found" });
     }
   } catch (err) {
-    res.status(500).send({ message: err.message });
+    res.status(500).json({ message: err.message });
   }
 }

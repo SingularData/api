@@ -4,6 +4,8 @@ import awsES = require("http-aws-es");
 import assign = require("lodash.assign");
 import config = require("config");
 
+AWS.config.region = "us-east-1";
+
 const client = new es.Client({
   hosts: [config.get("es.url")],
   connectionClass: awsES
