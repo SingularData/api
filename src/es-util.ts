@@ -2,15 +2,18 @@ import AWS = require("aws-sdk");
 import es = require("elasticsearch");
 import awsES = require("http-aws-es");
 import assign = require("lodash.assign");
+import config = require("config");
 
 const client = new es.Client({
-  hosts: [process.env.ES_URL],
+  hosts: [config.get("es.url")],
   connectionClass: awsES
 });
 
+const index = config.get("es.index");
+
 export function getDataset(id) {
   const params = {
-    index: process.env.ES_INDEX,
+    index,
     type: "_all",
     id
   };
@@ -21,7 +24,7 @@ export function getDataset(id) {
 export function searchDatasets(searchParams) {
   const params = assign(
     {
-      index: process.env.ES_INDEX
+      index
     },
     searchParams
   );

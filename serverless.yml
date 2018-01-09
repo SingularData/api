@@ -13,10 +13,6 @@ provider:
       Action:
         - es:*
       Resource: "*"
-  environment:
-    ES_URL: "search-datarea-o2cglxd5agwytjwhzgtedbg4fq.us-east-1.es.amazonaws.com"
-    ES_INDEX: "metadata"
-    VERSION: 1.0.0
 
 functions:
   app:

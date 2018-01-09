@@ -5,10 +5,11 @@
   "main": "build/index.js",
   "scripts": {
     "precommit": "lint-staged",
+    "prepush": "npm test",
     "test":
       "npm run build && sls offline start --exec \"mocha \"test/**/*.test.ts\" --require ts-node/register\"",
-    "deploy": "sls deploy",
     "start": "npm run build && sls offline start",
+    "deploy": "sls deploy",
     "build": "tsc --outDir dist"
   },
   "lint-staged": {
@@ -42,9 +43,11 @@
   },
   "dependencies": {
     "@types/aws-sdk": "^2.7.0",
+    "@types/config": "0.0.33",
     "@types/lodash.assign": "^4.2.3",
     "@types/node": "^8.5.5",
     "aws-sdk": "^2.176.0",
+    "config": "^1.29.1",
     "elasticsearch": "^14.0.0",
     "express": "^4.16.2",
     "http-aws-es": "^4.0.0",
