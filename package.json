@@ -10,7 +10,8 @@
       "npm run build && SLS_DEBUG=* sls offline start --exec \"mocha \"test/**/*.test.ts\" --require ts-node/register\"",
     "start": "npm run build && sls offline start",
     "deploy": "sls deploy",
-    "build": "tsc --outDir dist"
+    "build": "tsc --outDir dist",
+    "generate-token": "ts-node script/generate-token.ts"
   },
   "lint-staged": {
     "*.{d.ts,ts,json,md}": ["prettier --write", "git add"]
@@ -27,15 +28,20 @@
   "homepage": "https://github.com/SingularData/dataset-api#readme",
   "devDependencies": {
     "@types/chai": "^4.0.10",
+    "@types/dotenv": "^4.0.2",
+    "@types/ini": "^1.3.29",
     "@types/mocha": "^2.2.45",
     "@types/node-fetch": "^1.6.7",
     "chai": "^4.1.2",
+    "dotenv": "^4.0.0",
     "husky": "^0.14.3",
+    "ini": "^1.3.5",
     "lint-staged": "^6.0.0",
     "mocha": "^4.1.0",
     "node-fetch": "^1.7.3",
     "prettier": "^1.9.2",
     "serverless": "^1.25.0",
+    "serverless-dotenv-plugin": "^1.0.1",
     "serverless-offline": "^3.16.0",
     "ts-node": "^4.1.0",
     "tslint": "^5.8.0",

@@ -1,7 +1,12 @@
 service: sdn-dataset-api
 
 plugins:
+  - serverless-dotenv-plugin
   - serverless-offline
+
+custom:
+  dotenv:
+    path: .env
 
 provider:
   name: aws
@@ -13,6 +18,8 @@ provider:
       Action:
         - es:*
       Resource: "*"
+  enviroment:
+    SDN_ACCESS_KEY: ${env:SDN_ACCESS_KEY}
 
 functions:
   app:

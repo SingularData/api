@@ -1,11 +1,12 @@
 import { verify } from "jsonwebtoken";
+import AWS = require("aws-sdk");
 
 exports.auth = (event, context, callback) => {
   const token = event.authorizationToken;
 
   try {
-    // AWS asscess key id
-    const pass = verify(token, "AKIAILNMXGZKBWOHTS3Q");
+    const verified: any = verify(token, process.env.SDN_ACCESS_KEY);
+    const pass = verified.data;
 
     if (pass === "allow") {
       callback(null, generatePolicy("user", "Allow", event.methodArn));
