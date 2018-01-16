@@ -16,15 +16,41 @@ provider:
 
 functions:
   app:
-    handler: dist/index.handler
+    handler: dist/api/index.handler
     events:
-      - http: ANY /
-      - http: 'ANY {proxy+}'
+      - http:
+          path: /
+          method: any
   searchDatasets:
-    handler: dist/index.handler
+    handler: dist/api/index.handler
     events:
-      - http: 'GET /api/datasets/search'
+      - http:
+          paht: /api/datasets/search
+          method: get
+          request:
+            parameters:
+              querystrings:
+                q: false
   getDataset:
-      handler: dist/index.handler
-      events:
-        - http: 'GET /api/datasets/{proxy+}'
+    handler: dist/api/index.handler
+    events:
+      - http:
+          path: /api/datasets/{id}
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true
+  bootstrapPipeline:
+    handler: dist/api/index.handler
+    events:
+      - http:
+          path: /api/admin/bootstrap_pipeline
+          method: post
+          authorizer:
+            name: authorizer
+            identitySource: method.request.header.token
+            type: token
+  authorizer:
+    name: sdn-api-authorizer
+    handler: dist/lambda/auth/index.auth

@@ -7,7 +7,7 @@
     "precommit": "lint-staged",
     "prepush": "npm test",
     "test":
-      "npm run build && sls offline start --exec \"mocha \"test/**/*.test.ts\" --require ts-node/register\"",
+      "npm run build && SLS_DEBUG=* sls offline start --exec \"mocha \"test/**/*.test.ts\" --require ts-node/register\"",
     "start": "npm run build && sls offline start",
     "deploy": "sls deploy",
     "build": "tsc --outDir dist"
@@ -44,6 +44,7 @@
   "dependencies": {
     "@types/aws-sdk": "^2.7.0",
     "@types/config": "0.0.33",
+    "@types/jsonwebtoken": "^7.2.5",
     "@types/lodash.assign": "^4.2.3",
     "@types/node": "^8.5.5",
     "aws-sdk": "^2.176.0",
@@ -51,6 +52,7 @@
     "elasticsearch": "^14.0.0",
     "express": "^4.16.2",
     "http-aws-es": "^4.0.0",
+    "jsonwebtoken": "^8.1.0",
     "lodash.assign": "^4.2.0",
     "serverless-http": "^1.5.2"
   }
