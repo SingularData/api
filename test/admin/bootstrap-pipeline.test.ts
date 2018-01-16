@@ -28,7 +28,7 @@ describe("/admin/bootstrap_pipeline", () => {
   it("should accept if valid token is provided.", done => {
     const params = {
       method: "POST",
-      body: "{}",
+      body: '{ "testing": true }',
       headers: {
         token: generateToken()
       }

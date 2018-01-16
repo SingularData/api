@@ -49,11 +49,13 @@
   },
   "dependencies": {
     "@types/aws-sdk": "^2.7.0",
+    "@types/body-parser": "^1.16.8",
     "@types/config": "0.0.33",
     "@types/jsonwebtoken": "^7.2.5",
     "@types/lodash.assign": "^4.2.3",
     "@types/node": "^8.5.5",
     "aws-sdk": "^2.176.0",
+    "body-parser": "^1.18.2",
     "config": "^1.29.1",
     "elasticsearch": "^14.0.0",
     "express": "^4.16.2",

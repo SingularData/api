@@ -20,6 +20,7 @@ provider:
       Resource: "*"
   enviroment:
     SDN_ACCESS_KEY: ${env:SDN_ACCESS_KEY}
+    SNS_BOOTSTRAP_QUEUE: { "Ref": "SNSBootstrapQueue" }
 
 functions:
   app:
@@ -61,3 +62,10 @@ functions:
   authorizer:
     name: sdn-api-authorizer
     handler: dist/lambda/auth/index.auth
+
+resources:
+  Resources:
+    SNSBootstrapQueue:
+      Type: AWS::SNS::Topic
+      Properties:
+        TopicName: "sdn-pipeline-bootstrap-queue"

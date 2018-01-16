@@ -3,8 +3,11 @@ import express = require("express");
 import config = require("config");
 import datasets = require("./datasets");
 import admin = require("./admin");
+import bodyParser = require("body-parser");
 
 const app = express();
+
+app.use(bodyParser.json());
 
 app.get("/api", (req, res) => res.json({ version: config.get("version") }));
 
