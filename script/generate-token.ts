@@ -10,4 +10,4 @@ export function generateToken() {
   return sign({ data: "allow" }, process.env.SDN_ACCESS_KEY);
 }
 
-console.log("Token: ", generateToken());
+console.log(generateToken());

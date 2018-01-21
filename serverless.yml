@@ -17,6 +17,7 @@ provider:
     - Effect: Allow
       Action:
         - es:*
+        - sns:*
       Resource: "*"
   enviroment:
     SDN_ACCESS_KEY: ${env:SDN_ACCESS_KEY}
