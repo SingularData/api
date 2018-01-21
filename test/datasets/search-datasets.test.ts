@@ -14,7 +14,9 @@ const client = new es.Client({
   connectionClass: awsES
 });
 
-describe("/api/datasets/search", () => {
+describe("/api/datasets/search", function() {
+  this.timeout(10000);
+
   before(done => {
     client
       .index({

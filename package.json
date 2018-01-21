@@ -5,11 +5,11 @@
   "main": "build/index.js",
   "scripts": {
     "precommit": "lint-staged",
-    "prepush": "npm test",
+    "prepush": "npm run build && npm test",
     "test":
-      "npm run build && SLS_DEBUG=* sls offline start --exec \"mocha \"test/**/*.test.ts\" --require ts-node/register\"",
+      "SLS_DEBUG=* sls offline start --exec \"mocha \"test/**/*.test.ts\" --require ts-node/register\"",
     "start": "npm run build && sls offline start",
-    "deploy": "sls deploy",
+    "deploy": "npm run build && npm test && sls deploy",
     "build": "tsc --outDir dist",
     "generate-token": "ts-node script/generate-token.ts"
   },

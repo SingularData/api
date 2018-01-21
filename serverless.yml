@@ -33,7 +33,7 @@ functions:
     handler: dist/api/index.handler
     events:
       - http:
-          paht: /api/datasets/search
+          path: /api/datasets/search
           method: get
           request:
             parameters:
@@ -63,9 +63,9 @@ functions:
     name: sdn-api-authorizer
     handler: dist/lambda/auth/index.auth
 
-resources:
-  Resources:
-    SNSBootstrapQueue:
-      Type: AWS::SNS::Topic
-      Properties:
-        TopicName: "sdn-pipeline-bootstrap-queue"
+# resources:
+#   Resources:
+#     SNSBootstrapQueue:
+#       Type: AWS::SNS::Topic
+#       Properties:
+#         TopicName: "sdn-pipeline-bootstrap-queue"
