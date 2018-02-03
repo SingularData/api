@@ -27,12 +27,6 @@ provider:
     SNS_BOOTSTRAP_QUEUE: { "Ref": "SNSBootstrapQueue" }
 
 functions:
-  app:
-    handler: dist/api/index.handler
-    events:
-      - http:
-          path: /
-          method: any
   searchDatasets:
     handler: dist/api/index.handler
     events:

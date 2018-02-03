@@ -9,8 +9,6 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.get("/api", (req, res) => res.json({ version: config.get("version") }));
-
 app.get("/api/datasets/search", datasets.searchDatasets);
 app.get("/api/datasets/:id", datasets.getDataset);
 

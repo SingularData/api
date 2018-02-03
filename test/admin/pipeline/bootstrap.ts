@@ -1,11 +1,11 @@
 import fetch from "node-fetch";
 import config = require("config");
 import { expect } from "chai";
-import { generateToken } from "../../script/generate-token";
+import { generateToken } from "../../../script/generate-token";
 
 const url = `${config.get("localHost")}:${config.get("localPort")}`;
 
-describe("/admin/bootstrap_pipeline", () => {
+describe("POST /api/admin/pipeline/bootstrap", () => {
   it("should reject if invalid token is provided.", done => {
     const params = {
       method: "POST",
@@ -15,7 +15,7 @@ describe("/admin/bootstrap_pipeline", () => {
       }
     };
 
-    fetch(`${url}/api/admin/bootstrap_pipeline`, params)
+    fetch(`${url}/api/admin/pipeline/bootstrap`, params)
       .then(res => res.json())
       .then(res => {
         expect(res.statusCode).to.equal(401);
@@ -34,7 +34,7 @@ describe("/admin/bootstrap_pipeline", () => {
       }
     };
 
-    fetch(`${url}/api/admin/bootstrap_pipeline`, params)
+    fetch(`${url}/api/admin/pipeline/bootstrap`, params)
       .then(res => res.json())
       .then(res => {
         expect(res.message).to.equal("Data pipeline bootstrapped");
