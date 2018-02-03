@@ -14,7 +14,9 @@ app.get("/api", (req, res) => res.json({ version: config.get("version") }));
 app.get("/api/datasets/search", datasets.searchDatasets);
 app.get("/api/datasets/:id", datasets.getDataset);
 
-app.post("/api/admin/bootstrap_pipeline", admin.bootstrapPipeline);
+app.post("/api/admin/es/index", admin.createIndex);
+app.delete("/api/admin/es/index", admin.deleteIndex);
+app.post("/api/admin/pipeline/bootstrap", admin.bootstrapPipeline);
 
 app.use((req, res) => res.send(404));
 

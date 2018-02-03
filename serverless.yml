@@ -21,6 +21,9 @@ provider:
       Resource: "*"
   enviroment:
     SDN_ACCESS_KEY: ${env:SDN_ACCESS_KEY}
+    ES_URL: ${env:ES_URL}
+    ES_INDEX: ${env:ES_INDEX}
+    ES_DOC_TYPE: ${env:ES_DOC_TYPE}
     SNS_BOOTSTRAP_QUEUE: { "Ref": "SNSBootstrapQueue" }
 
 functions:
@@ -50,11 +53,31 @@ functions:
             parameters:
               paths:
                 id: true
+  createIndex:
+    handler: dist/api/index.handler
+    events:
+      - http:
+          path: /api/admin/es/index
+          method: post
+          authorizer:
+            name: authorizer
+            identitySource: method.request.header.token
+            type: token
+  deleteIndex:
+    handler: dist/api/index.handler
+    events:
+      - http:
+          path: /api/admin/es/index
+          method: delete
+          authorizer:
+            name: authorizer
+            identitySource: method.request.header.token
+            type: token
   bootstrapPipeline:
     handler: dist/api/index.handler
     events:
       - http:
-          path: /api/admin/bootstrap_pipeline
+          path: /api/admin/pipeline/bootstrap
           method: post
           authorizer:
             name: authorizer
