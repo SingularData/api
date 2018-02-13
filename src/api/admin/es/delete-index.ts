@@ -2,7 +2,7 @@ import AWS = require("aws-sdk");
 import es = require("elasticsearch");
 import awsES = require("http-aws-es");
 
-AWS.config.region = "us-east-1";
+AWS.config.region = process.env.AWS_REGION;
 
 export function deleteIndex(req, res) {
   const client = new es.Client({

@@ -1,9 +1,8 @@
 import fetch from "node-fetch";
-import config = require("config");
 import { expect } from "chai";
 import { generateToken } from "../../../script/generate-token";
 
-const url = `${config.get("localHost")}:${config.get("localPort")}`;
+const url = `http://${process.env.TEST_HOST}:${process.env.TEST_PORT}`;
 
 describe("POST /api/admin/pipeline/bootstrap", () => {
   it("should reject if invalid token is provided.", done => {

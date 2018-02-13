@@ -1,16 +1,15 @@
-import config = require("config");
 import fetch from "node-fetch";
 import { expect } from "chai";
 import AWS = require("aws-sdk");
 import es = require("elasticsearch");
 import awsES = require("http-aws-es");
 
-AWS.config.region = "us-east-1";
+AWS.config.region = process.env.AWS_REGION;
 
-const url = `${config.get("localHost")}:${config.get("localPort")}`;
-const index = config.get("es.index");
+const url = `http://${process.env.TEST_HOST}:${process.env.TEST_PORT}`;
+const index = process.env.ES_INDEX;
 const client = new es.Client({
-  hosts: [config.get("es.url")],
+  hosts: [process.env.ES_URL],
   connectionClass: awsES
 });
 
@@ -21,10 +20,10 @@ describe("GET /api/datasets/:id", function() {
     client
       .index({
         index,
-        type: "test",
+        type: process.env.ES_DOC_TYPE,
         id: "api_test",
         body: {
-          message: "test"
+          message: "api_test"
         }
       })
       .then(() => done())
@@ -35,7 +34,7 @@ describe("GET /api/datasets/:id", function() {
     fetch(`${url}/api/datasets/api_test`)
       .then(res => res.json())
       .then(res => {
-        expect(res.result.message).to.equal("test");
+        expect(res.result.message).to.equal("api_test");
         done();
       })
       .catch(err => done(err));

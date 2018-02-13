@@ -1,8 +1,7 @@
 import fetch from "node-fetch";
-import config = require("config");
 import { expect } from "chai";
 
-const url = `${config.get("localHost")}:${config.get("localPort")}`;
+const url = `http://${process.env.TEST_HOST}:${process.env.TEST_PORT}`;
 
 describe("DELETE /api/admin/es/index", () => {
   it("should reject if invalid token is provided.", done => {

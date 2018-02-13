@@ -20,10 +20,13 @@ provider:
         - sns:*
       Resource: "*"
   enviroment:
+    AWS_REGION: ${env:AWS_REGION}
     SDN_ACCESS_KEY: ${env:SDN_ACCESS_KEY}
     ES_URL: ${env:ES_URL}
     ES_INDEX: ${env:ES_INDEX}
     ES_DOC_TYPE: ${env:ES_DOC_TYPE}
+    TEST_HOST: ${env:TEST_HOST}
+    TEST_PORT: ${env:TEST_PORT}
     SNS_BOOTSTRAP_QUEUE: { "Ref": "SNSBootstrapQueue" }
 
 functions:

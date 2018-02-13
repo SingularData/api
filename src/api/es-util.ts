@@ -2,20 +2,18 @@ import AWS = require("aws-sdk");
 import es = require("elasticsearch");
 import awsES = require("http-aws-es");
 import assign = require("lodash.assign");
-import config = require("config");
+import * as _ from "lodash";
 
-AWS.config.region = "us-east-1";
+AWS.config.region = process.env.AWS_REGION;
 
 const client = new es.Client({
-  hosts: [config.get("es.url")],
+  hosts: [process.env.ES_URL],
   connectionClass: awsES
 });
 
-const index = config.get("es.index");
-
 export function getDataset(id) {
   const params = {
-    index,
+    index: process.env.ES_INDEX,
     type: "_all",
     id
   };
@@ -24,9 +22,9 @@ export function getDataset(id) {
 }
 
 export function searchDatasets(searchParams) {
-  const params = assign(
+  const params = _.defaults(
     {
-      index
+      index: process.env.ES_INDEX
     },
     searchParams
   );
