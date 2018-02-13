@@ -4,7 +4,7 @@ import awsES = require("http-aws-es");
 import assign = require("lodash.assign");
 import * as _ from "lodash";
 
-AWS.config.region = process.env.AWS_REGION;
+AWS.config.region = process.env.AWS_SERVICE_REGION;
 
 const client = new es.Client({
   hosts: [process.env.ES_URL],

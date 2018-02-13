@@ -8,7 +8,7 @@ const mappings = JSON.parse(
   readFileSync(join(__dirname, "mappings.json"), "utf-8")
 );
 
-AWS.config.region = process.env.AWS_REGION;
+AWS.config.region = process.env.AWS_SERVICE_REGION;
 
 export function createIndex(req, res) {
   const client = new es.Client({

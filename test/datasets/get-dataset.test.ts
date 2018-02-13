@@ -4,7 +4,7 @@ import AWS = require("aws-sdk");
 import es = require("elasticsearch");
 import awsES = require("http-aws-es");
 
-AWS.config.region = process.env.AWS_REGION;
+AWS.config.region = process.env.AWS_SERVICE_REGION;
 
 const url = `http://${process.env.TEST_HOST}:${process.env.TEST_PORT}`;
 const index = process.env.ES_INDEX;
