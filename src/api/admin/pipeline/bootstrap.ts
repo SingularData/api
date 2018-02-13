@@ -1,6 +1,6 @@
 import AWS = require("aws-sdk");
 
-AWS.config.region = "us-east-1";
+AWS.config.region = process.env.AWS_REGION;
 
 export function bootstrapPipeline(req, res) {
   const body = req.body;
