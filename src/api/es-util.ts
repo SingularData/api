@@ -25,10 +25,7 @@ export function getDatasetDCAT(id) {
     _sourceInclude: ["dcat"]
   };
 
-  console.log(id);
-  return getData(params).then(result => {
-    return result.dcat;
-  });
+  return getData(params).then(result => result.dcat);
 }
 
 export function getDatasetMetadata(id) {

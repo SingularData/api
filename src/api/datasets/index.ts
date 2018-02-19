@@ -44,7 +44,6 @@ export async function getDatasetMetadata(req, res) {
       res.status(404).json({ message: "Not Found" });
     }
   } catch (err) {
-    console.log(err);
     res.status(500).json({ message: err.message });
   }
 }
