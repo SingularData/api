@@ -13,12 +13,31 @@ const client = new es.Client({
 
 export function getDataset(id) {
   const params = {
-    index: process.env.ES_INDEX,
-    type: "_all",
     id
   };
 
-  return client.get(params).then(result => result._source);
+  return getData(params);
+}
+
+export function getDatasetDCAT(id) {
+  const params = {
+    id,
+    _sourceInclude: ["dcat"]
+  };
+
+  console.log(id);
+  return getData(params).then(result => {
+    return result.dcat;
+  });
+}
+
+export function getDatasetMetadata(id) {
+  const params = {
+    id,
+    _sourceInclude: ["original"]
+  };
+
+  return getData(params).then(result => result.original);
 }
 
 export function searchDatasets(searchParams) {
@@ -32,4 +51,13 @@ export function searchDatasets(searchParams) {
   return client
     .search(params)
     .then(result => result.hits.hits.map(hit => hit._source));
+}
+
+function getData(params) {
+  params = _.defaults(params, {
+    index: process.env.ES_INDEX,
+    type: process.env.ES_DOC_TYPE
+  });
+
+  return client.get(params).then(result => result._source);
 }

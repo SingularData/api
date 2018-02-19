@@ -50,6 +50,26 @@ functions:
             parameters:
               paths:
                 id: true
+  getDatasetDCAT:
+    handler: dist/api/index.handler
+    events:
+      - http:
+          path: /api/datasets/{id}/dcat
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true
+  getDatasetMetadata:
+    handler: dist/api/index.handler
+    events:
+      - http:
+          path: /api/datasets/{id}/metadata
+          method: get
+          request:
+            parameters:
+              paths:
+                id: true
   createIndex:
     handler: dist/api/index.handler
     events:

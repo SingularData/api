@@ -1,5 +1,5 @@
+import * as express from "express";
 import serverless = require("serverless-http");
-import express = require("express");
 import datasets = require("./datasets");
 import admin = require("./admin");
 import bodyParser = require("body-parser");
@@ -9,6 +9,8 @@ const app = express();
 app.use(bodyParser.json());
 
 app.get("/api/datasets/search", datasets.searchDatasets);
+app.get("/api/datasets/:id/dcat", datasets.getDatasetDCAT);
+app.get("/api/datasets/:id/metadata", datasets.getDatasetMetadata);
 app.get("/api/datasets/:id", datasets.getDataset);
 
 app.post("/api/admin/es/index", admin.createIndex);
