@@ -20,6 +20,8 @@ describe("GET /api/datasets/search", function() {
       .then(res => res.json())
       .then(res => {
         expect(res.result.length).to.gte(0);
+        expect(Object.keys(res.result[0])).to.have.lengthOf(2);
+        expect(res.result[0]).to.have.all.keys("type", "dcat");
         done();
       })
       .catch(err => done(err));

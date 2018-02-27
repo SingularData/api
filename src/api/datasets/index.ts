@@ -52,7 +52,11 @@ export async function searchDatasets(req, res) {
   const q = req.query.q;
 
   try {
-    const result = await es.searchDatasets({ q });
+    const result = await es.searchDatasets({
+      q,
+      _sourceInclude: ["type", "dcat"]
+    });
+
     res.json({ q, result });
   } catch (err) {
     res.status(500).json({ message: err.message });
