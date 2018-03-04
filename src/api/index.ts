@@ -3,9 +3,11 @@ import serverless = require("serverless-http");
 import datasets = require("./datasets");
 import admin = require("./admin");
 import bodyParser = require("body-parser");
+import cors = require("cors");
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.get("/api/datasets/search", datasets.searchDatasets);

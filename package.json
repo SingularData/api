@@ -60,6 +60,7 @@
     "@types/node": "^9.4.6",
     "aws-sdk": "^2.197.0",
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "elasticsearch": "^14.1.0",
     "express": "^4.16.2",
     "http-aws-es": "^4.0.0",
