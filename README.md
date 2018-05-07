@@ -1,5 +1,7 @@
 # SingularData API
 
+[![Build Status](https://travis-ci.org/SingularData/api.svg?branch=master)](https://travis-ci.org/SingularData/api)
+
 This repository hosts the code for APIs used in the [SingularData](https://singulardata.github.io/).
 
 The APIs are developed in [Node.js](https://nodejs.org/en/) and handled with [AWS Lambda](https://aws.amazon.com/lambda/). These APIs are used to preprocess and filter requests sent to the internal open data search engine (in the [AWS ElasticSearch service](https://aws.amazon.com/elasticsearch-service/)). They include:
